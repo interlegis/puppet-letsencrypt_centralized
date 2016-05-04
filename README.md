@@ -11,3 +11,29 @@ To use this module you need to configure /etc/puppet/fileserver.conf to allow Pu
   allow \*.your.machines.puppet.domain
 ```
 
+## Example
+
+### Puppet master
+
+```
+class { 'letsencrypt_centralized':
+  puppetmaster     => true,
+  puppetmasterhost => $fqdn,
+  email            => 'user@domain.com',
+  certificates     => { 'www.domain.com' => {} }
+}
+```
+
+### Nginx SSL Proxy
+
+```
+class { 'letsencrypt_centralized':
+  puppetmasterhost => 'yourpuppetmaster.domain.com',
+  email            => 'user@domain.com',
+  certificates     => { 'www.domain.com' => { proxy => 'http://web.backend:80/' } }
+}
+```
+
+## Contributing
+
+Pull requests welcome!
