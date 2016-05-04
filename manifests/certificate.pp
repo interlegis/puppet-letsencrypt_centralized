@@ -7,7 +7,7 @@ define letsencrypt_centralized::certificate (
 
   file { "$webroot/$name": ensure => 'directory' }
 
-  letsencrypt::certonly{ '$name':
+  letsencrypt::certonly{ "$name":
     plugin          => 'webroot',
     domains         => $domains,
     webroot_paths   => ["$webroot/$name"],
